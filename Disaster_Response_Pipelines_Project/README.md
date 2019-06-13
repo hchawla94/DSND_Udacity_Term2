@@ -23,4 +23,4 @@ The project includes a web app where an emergency worker can input a new message
 
 3. Go to http://0.0.0.0:3001/
 
-![Alt text]\(/Screenshot_1.JPG)
+![ScreenShot](Screenshot_1.JPG)
