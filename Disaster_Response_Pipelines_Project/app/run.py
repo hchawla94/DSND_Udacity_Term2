@@ -4,7 +4,7 @@ import pandas as pd
 import re
 
 import nltk
-nltk.download(['punkt', 'wordnet','stopwords', 'averaged_perceptron_tagger'])
+nltk.download(['stopwords'])
 
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -12,7 +12,7 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Pie
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -55,10 +55,16 @@ def index():
     # extract data needed for visuals
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
+    genre_counts_rel = df[df['related'] != 0].groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
-    category_names = list(df.columns[4:])
-    category_boolean = (df.iloc[:,4:] != 0).sum().values
+    related_counts = (df.groupby('related').count()['message']/len(df))*100
+    related_names = ['related-0','related-1','related-2']
+    
+    Test = pd.DataFrame(df[df.columns[4:]].sum().sort_values(ascending= False))
+    Test.columns =["count"]
+    category_names = list(df.columns[5:])
+    category_perc = ((df.iloc[:,5:] != 0).sum().values/int(Test.loc['related'].values))*100
     
       
     # create visuals
@@ -68,39 +74,67 @@ def index():
             'data': [
                 Bar(
                     x=genre_names,
-                    y=genre_counts
+                    y=genre_counts,
+                    name = 'Total'
+                ),
+                Bar(
+                    x=genre_names,
+                    y=genre_counts_rel,
+                    name = 'Related'
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Comparison of Distribution of Overall and Related Message by Genres',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
                     'title': "Genre"
-                }
+                },
+                'barmode': 'group'
             }
+        },
+        {
+            'data': [
+                Bar(
+                    x=related_names,
+                    y=related_counts,
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Messages by Related Class (%age)',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Related Category"
+                },
+           }
         },
          {
             'data': [
                 Bar(
                     x=category_names,
-                    y=category_boolean
+                    y=category_perc
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message 7Categories',
+                'title': 'Distribution of Message Categories by %age (within Related Category)',
                 'yaxis': {
-                    'title': "Count"
+                    'title': "Percentage"
                 },
                 'xaxis': {
-                    'title': "Category"
+                    'title': "Category",
+                    'tickangle': -30
                 }
             }
-        },
+        }
+       
     ]
+    
     
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
