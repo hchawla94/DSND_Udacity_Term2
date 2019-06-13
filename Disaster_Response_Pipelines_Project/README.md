@@ -22,3 +22,6 @@ The project includes a web app where an emergency worker can input a new message
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
+
+![Screenshot]\(https://github.com/hchawla94/DSND_Udacity_Term2/blob/master/Disaster_Response_Pipelines_Project/Screenshot_1.JPG)
