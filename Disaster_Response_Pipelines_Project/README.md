@@ -1,5 +1,15 @@
 # Disaster Response Pipeline Project
 
+### Summary:
+
+As a part of Udacity Data Scientist Nanodegree ProgramIn this project, I have analyzed disaster data from Figure Eight to build a model for an API that classifies disaster messages.
+
+The data set contains real messages that were sent during disaster events.A machine learning pipeline was created to categorize these events so that one can send the messages to an appropriate disaster relief agency.
+
+The project includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data. 
+
+
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
