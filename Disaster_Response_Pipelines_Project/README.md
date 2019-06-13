@@ -2,7 +2,7 @@
 
 ### Summary:
 
-As a part of Udacity Data Scientist Nanodegree ProgramIn this project, I have analyzed disaster data from Figure Eight to build a model for an API that classifies disaster messages.
+As a part of Udacity Data Scientist Nanodegree Program, I have analyzed disaster data from Figure Eight to build a model for an API that classifies disaster messages.
 
 The data set contains real messages that were sent during disaster events.A machine learning pipeline was created to categorize these events so that one can send the messages to an appropriate disaster relief agency.
 
