@@ -16,6 +16,11 @@ This project requires Python 3.x and the following Python libraries installed:
 - Pandas
 - matplotlib
 - scikit-learn
+- RegEx
+- NLTK
+- Seaborn
+- Statsmodels
+
 
 ### Data Overview
 The following Airbnb activity is included in the Seattle dataset used here:
