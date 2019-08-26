@@ -32,4 +32,4 @@ The following Airbnb activity is included in the Seattle dataset used here:
 ### Results
 
 Results are discussed in a Medium blog available at the following link:
-https://medium.com/@hchawla94/seattle-airbnb-data-analysis-a47920dfc5b5
+- https://medium.com/@hchawla94/seattle-airbnb-data-analysis-a47920dfc5b5
